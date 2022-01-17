@@ -19,6 +19,31 @@ useEffect(() => {
     getRecipes();
 }, [])
 
+const deleteHandler = async (e) => {
+    
+    try {
+        const config = {
+            headers: {
+                "Content-type": "application/json",
+            },
+        };
+        if (window.confirm("Are You Sure? want to remove this Customer?")) {
+        axios.delete(
+            `http://localhost:8092/api/recipe/${recipes._id}`,
+            
+            config
+            )
+        }
+            
+        
+
+        
+
+    } catch (error) {
+        
+    }
+};
+
 
     return (
         <div>
@@ -36,13 +61,26 @@ recipes.reverse().map((recipe, index) => {
     return(
         <Container>
            <Card>
-  <Card.Header as="h5">{recipe.Recipe_Name}</Card.Header>
+  <Card.Header style={{ display: "flex" }} as="h5">{recipe.Recipe_Name}
+  <div>
+          <Button href={`/add/${recipe._id}`} variant="success" className="mx-2">
+                       Update
+            </Button>
+
+            <Button variant="danger" className="mx-2"
+                                        onClick={() => deleteHandler(recipe._id)}>
+                                        Delete
+                                    </Button>
+</div>
+  
+  
+  </Card.Header>
   <Card.Body>
     <Card.Title>Ingredients : {recipe.Ingredients}</Card.Title>
     <Card.Text>
       Description : {recipe.Description}
     </Card.Text>
-    <Button variant="primary">Go somewhere</Button>
+    
   </Card.Body>
 </Card>
 </Container>         

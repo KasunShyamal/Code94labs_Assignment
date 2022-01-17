@@ -2,6 +2,9 @@ import React from 'react'
 import { Button, Container, Form, FormControl, Nav, Navbar, NavDropdown} from 'react-bootstrap'
 
 const Header = () => {
+  const refreshPage = ()=>{
+    window.location.reload();
+ }
     return (
         <Navbar bg="primary" expand="lg" variant="dark">
         <Container>
@@ -16,7 +19,7 @@ const Header = () => {
           </Nav>
             <Nav className="m-auto">
               
-                <Button href="/">Refresh Page</Button>
+                <Button onClick={refreshPage}>Refresh Page</Button>
             
             </Nav>
          

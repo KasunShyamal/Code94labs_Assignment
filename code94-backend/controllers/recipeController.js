@@ -25,6 +25,17 @@ const getRecipe =  async (req,res) => {
     
 };
 
+const getRecipeById = async (req,res) => {
+    const recipe = await Recipe.findById(req.params.id);
+
+    if(recipe) {
+        res.json(recipe);
+    }
+    else {
+        res.status(404).json({message: "Recipe Not Found"});
+    }
+}
+
 const updateRecipe = async(req,res) => {
     const {Recipe_Name, Ingredients, Description} = req.body;
 
@@ -59,4 +70,4 @@ const removeRecipe =  async(req,res) =>{
         }
     }
 
-module.exports = {addRecipe,getRecipe,updateRecipe,removeRecipe};
+module.exports = {addRecipe,getRecipeById,getRecipe,updateRecipe,removeRecipe};
