@@ -38,6 +38,7 @@ const submitHandler = async (e) => {
     return (
         <div>
             <Container>
+                <h1>Add a New recipe</h1>
             <Form onSubmit={submitHandler}>
   <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
     <Form.Label>Recipe Name</Form.Label>
