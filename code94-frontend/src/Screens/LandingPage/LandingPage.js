@@ -1,9 +1,25 @@
-import React from 'react'
-import { Button, Card } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
-import AddRecipe from '../AddRecipe/AddRecipe'
+import React, {useState, useEffect} from 'react'
+import axios from "axios"
+import { Button, Card, Container } from 'react-bootstrap'
+
 
 const LandingPage = () => {
+
+const [recipes, setRecipes] = useState([]);
+
+useEffect(() => {
+    const getRecipes = () =>  {
+        axios.get("http://localhost:8092/api/recipe/get").then((res) => {
+            //console.log(res.data);
+            setRecipes(res.data);
+        }).catch((err) => {
+            alert(err.message);
+        })
+    }
+    getRecipes();
+}, [])
+
+
     return (
         <div>
            <hr></hr>
@@ -13,21 +29,28 @@ const LandingPage = () => {
            </a>
            </div>
            <hr></hr>
-           <div>
+         
+           {recipes &&  recipes.length > 0 ?
+
+recipes.reverse().map((recipe, index) => {
+    return(
+        <Container>
            <Card>
-  <Card.Header as="h5">Featured</Card.Header>
+  <Card.Header as="h5">{recipe.Recipe_Name}</Card.Header>
   <Card.Body>
-    <Card.Title>Special title treatment</Card.Title>
+    <Card.Title>Ingredients : {recipe.Ingredients}</Card.Title>
     <Card.Text>
-      With supporting text below as a natural lead-in to additional content.
+      Description : {recipe.Description}
     </Card.Text>
     <Button variant="primary">Go somewhere</Button>
   </Card.Body>
 </Card>
-           </div>
-           
-        </div>
+</Container>         
+        
     )
+}) : null}
+</div>
+)
 }
 
 export default LandingPage
