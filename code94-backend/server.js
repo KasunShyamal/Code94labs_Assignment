@@ -8,13 +8,13 @@ const app = express();
 require("dotenv").config();
 const recipeRoutes = require('./routes/recipeRoutes')
 
-
+//setting the port
 const PORT = process.env.PORT || 8092;
 
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.json());
-
+//connecting to the mongoDB
 const URL = process.env.MONGODB_URL ;
 
 mongoose.connect(URL, {
@@ -23,7 +23,7 @@ mongoose.connect(URL, {
      useUnifiedTopology: true,
      
 });
-
+//set api
 app.use('/api/recipe',recipeRoutes);
 
 

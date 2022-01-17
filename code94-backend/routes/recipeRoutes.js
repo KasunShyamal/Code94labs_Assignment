@@ -4,6 +4,7 @@ const { addRecipe, getRecipeById, getRecipe, updateRecipe, removeRecipe } = requ
 
 const router = express.Router();
 
+//set routes
 router.route("/").post(addRecipe);
 router.route("/get").get(getRecipe);
 router.route("/:id").get(getRecipeById).put(updateRecipe).delete(removeRecipe);

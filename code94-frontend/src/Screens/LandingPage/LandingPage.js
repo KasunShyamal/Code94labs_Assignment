@@ -3,12 +3,13 @@ import axios from "axios"
 import { Button, Card, Container } from 'react-bootstrap'
 
 
-const LandingPage = () => {
+const LandingPage = (props) => {
 
 const [recipes, setRecipes] = useState([]);
 
 useEffect(() => {
     const getRecipes = () =>  {
+        //calling the api to fetch all the recipes
         axios.get("http://localhost:8092/api/recipe/get").then((res) => {
             //console.log(res.data);
             setRecipes(res.data);
@@ -19,7 +20,8 @@ useEffect(() => {
     getRecipes();
 }, [])
 
-const deleteHandler = async (e) => {
+//calling the deleteHandler
+const deleteHandler = async (id) => {
     
     try {
         const config = {
@@ -29,7 +31,7 @@ const deleteHandler = async (e) => {
         };
         if (window.confirm("Are You Sure? want to remove this Customer?")) {
         axios.delete(
-            `http://localhost:8092/api/recipe/${recipes._id}`,
+            `http://localhost:8092/api/recipe/${id}`,
             
             config
             )
@@ -37,7 +39,7 @@ const deleteHandler = async (e) => {
             
         
 
-        
+       
 
     } catch (error) {
         
@@ -50,7 +52,7 @@ const deleteHandler = async (e) => {
            <hr></hr>
            <div align = "center">
             <a href = "/add">
-           <Button bg = "primary" variant='secondary'>Add recipe</Button>
+           <Button bg = "primary" variant='secondary'>Add a recipe</Button>
            </a>
            </div>
            <hr></hr>

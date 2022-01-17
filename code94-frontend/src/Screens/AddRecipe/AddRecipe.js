@@ -4,6 +4,7 @@ import { Button, Container, Form } from 'react-bootstrap';
 
 const AddRecipe = () => {
 
+//set use states for variables
 const [Recipe_Name, setRecipe_Name] = useState("");
 const [Ingredients, setIngredients] = useState("");
 const [Description, setDescription] = useState("");
@@ -17,13 +18,13 @@ const submitHandler = async (e) => {
                 "Content-type": "application/json",
             },
         };
-
+// calling to the api
         const { data } = await axios.post(
             "http://localhost:8092/api/recipe",
             { Recipe_Name, Ingredients, Description},
             config
         );
-
+// store data in the local storage
         localStorage.setItem("RecipeInfo", JSON.stringify(data));
 
     } catch (error) {

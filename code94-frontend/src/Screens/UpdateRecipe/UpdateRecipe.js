@@ -15,7 +15,7 @@ const UpdateRecipe = ({history}) => {
         let result = window.location.href.split("add/")[1]
         console.log(typeof(window.location.href), "abcd", result)
         
-        
+        //caling to the api and fetching data by id and set data
             axios.get(`http://localhost:8092/api/recipe/${result}`).then((res) => {
                 setRecipe_Name(res.data.Recipe_Name);
                 setIngredients(res.data.Ingredients);
