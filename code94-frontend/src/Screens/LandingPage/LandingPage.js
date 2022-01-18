@@ -29,7 +29,7 @@ const deleteHandler = async (id) => {
                 "Content-type": "application/json",
             },
         };
-        if (window.confirm("Are You Sure? want to remove this Customer?")) {
+        if (window.confirm("Are You Sure? want to remove this Recipe?")) {
         axios.delete(
             `http://localhost:8092/api/recipe/${id}`,
             
